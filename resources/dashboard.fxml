@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.expensetracker.DashboardController"
+            styleClass="root-pane">
+
+    <!-- TOP: header -->
+    <top>
+        <HBox spacing="20" styleClass="top-bar" alignment="CENTER_LEFT">
+            <Label text="Expense Tracker ₹" styleClass="app-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox spacing="12" alignment="CENTER">
+                <VBox>
+                    <Label text="Bank" styleClass="small-label"/>
+                    <Label fx:id="bankBalanceLabel" text="₹0" styleClass="big-balance"/>
+                </VBox>
+                <VBox>
+                    <Label text="GPay" styleClass="small-label"/>
+                    <Label fx:id="gpayBalanceLabel" text="₹0" styleClass="big-balance"/>
+                </VBox>
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- LEFT: sidebar -->
+    <left>
+        <VBox spacing="10" styleClass="sidebar" prefWidth="160" alignment="TOP_CENTER">
+            <Label text="MENU" styleClass="sidebar-title"/>
+            <Button text="Dashboard" maxWidth="140"/>
+            <Button text="Add Expense" maxWidth="140"/>
+            <Button text="Charts" maxWidth="140"/>
+            <Button text="Settings" maxWidth="140" disable="true"/>
+            <Region VBox.vgrow="ALWAYS"/>
+            <Label text="© 2025" styleClass="small-muted"/>
+        </VBox>
+    </left>
+
+    <!-- CENTER: main content -->
+    <center>
+        <VBox spacing="12" style="-fx-padding: 14;">
+            <HBox spacing="12">
+                <!-- Overview card: PieChart -->
+                <VBox spacing="6" styleClass="card" prefWidth="520">
+                    <Label text="Spending by Category" styleClass="card-title"/>
+                    <PieChart fx:id="pieChart" prefHeight="300" />
+                </VBox>
+
+                <!-- Payments card -->
+                <VBox spacing="6" styleClass="card" prefWidth="520">
+                    <Label text="Make a Payment" styleClass="card-title"/>
+                    <GridPane hgap="8" vgap="8">
+                        <Label text="Account:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <ComboBox fx:id="accountCombo" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="240"/>
+                        <Label text="Category:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <ComboBox fx:id="categoryCombo" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                        <Label text="Amount (₹):" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                        <TextField fx:id="amountField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                        <Label text="Description:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                        <TextField fx:id="descriptionField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                        <Button fx:id="payButton" text="Pay" GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="120"/>
+                        <Label fx:id="statusLabel" text="" GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.columnSpan="2"/>
+                    </GridPane>
+                </VBox>
+            </HBox>
+
+            <!-- Expense table -->
+            <VBox spacing="6" styleClass="card">
+                <Label text="Expense History" styleClass="card-title"/>
+                <TableView fx:id="expenseTable" prefHeight="250">
+                    <columns>
+                        <TableColumn fx:id="colDate" text="Date" prefWidth="160"/>
+                        <TableColumn fx:id="colCategory" text="Category" prefWidth="120"/>
+                        <TableColumn fx:id="colAmount" text="Amount" prefWidth="120"/>
+                        <TableColumn fx:id="colAccount" text="Account" prefWidth="100"/>
+                        <TableColumn fx:id="colDescription" text="Description" prefWidth="400"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </VBox>
+    </center>
+
+</BorderPane>
