@@ -1,2 +1,0 @@
-cd "C:\Expense Tracker"
-java --module-path "C:\Expense Tracker\lib\javafx-sdk-21.0.8\lib" --add-modules javafx.controls,javafx.fxml -cp "C:\Expense Tracker\out" com.example.expensetracker.MainApp
